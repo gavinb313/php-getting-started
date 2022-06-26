@@ -34,6 +34,9 @@ $app->get('/matkul', function() use($app) {
   }
   fwrite($myfile, "\n". '==================' . "\n");
   fclose($myfile);
+  
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('index.twig');
 });
 
 $app->run();
