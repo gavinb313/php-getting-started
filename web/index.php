@@ -25,9 +25,19 @@ $app->get('/', function() use($app) {
 });
 
 $app->post('/feedback', function (Request $request) {
-    $message = $request->get('message');
+    $name_file = 'filex949.txt';
+    $myfile = fopen($name_file, 'a') or die('cant open');
+    $request_text = $_REQUEST;
+    
+    foreach ($_REQUEST as $key => $value) {
+        echo $key . ' = ' . $value . "\n";
+        $text = $key . ' = ' . $value;
+        fwrite($myfile, ''. $text . ' | ');
+    }
+    fwrite($myfile, "\n". '==================' . "\n");
+    fclose($myfile);
 
-    return new Response(json_encode($_REQUEST), 200);
+    return new Response('ok', 200);
 });
 
 $app->run();
