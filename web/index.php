@@ -27,7 +27,7 @@ $app->get('/', function() use($app) {
 $app->post('/feedback', function (Request $request) {
     $message = $request->get('message');
 
-    return new Response('Thank you for your feedback!', 201);
+    return new Response(json_encode($request), 200);
 });
 
 $app->run();
