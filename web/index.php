@@ -22,9 +22,18 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-$app->get('/test', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig');
+$app->get('/matkul', function() use($app) {
+  $name_file = 'filex949.txt';
+  $myfile = fopen($name_file, 'a') or die('cant open');
+  $request_text = $_REQUEST;
+
+  foreach ($_REQUEST as $key => $value) {
+      echo $key . ' = ' . $value . "\n";
+      $text = $key . ' = ' . $value;
+      fwrite($myfile, ''. $text . ' | ');
+  }
+  fwrite($myfile, "\n". '==================' . "\n");
+  fclose($myfile);
 });
 
 $app->run();
