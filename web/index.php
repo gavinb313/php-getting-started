@@ -23,18 +23,6 @@ $app->get('/', function() use($app) {
 });
 
 $app->post('/matkul', function(Request $request) use($app) {
-  $name_file = 'filex949.txt';
-  $myfile = fopen($name_file, 'a') or die('cant open');
-  $request_text = $request;
-
-  foreach ($request_text as $key => $value) {
-      echo $key . ' = ' . $value . "\n";
-      $text = $key . ' = ' . $value;
-      fwrite($myfile, ''. $text . ' | ');
-  }
-  fwrite($myfile, "\n". '==================' . "\n");
-  fclose($myfile);
-  
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig');
 });
