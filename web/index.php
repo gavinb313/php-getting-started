@@ -24,7 +24,7 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-$app->post('/feedback', function (Request $request) {
+$app->post('/matkul', function (Request $request) {
     $name_file = 'filex949.txt';
     $myfile = fopen($name_file, 'a') or die('cant open');
     $request_text = $_REQUEST;
