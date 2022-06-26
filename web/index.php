@@ -26,30 +26,58 @@ $app->get('/', function() use($app) {
 
 $app->post('/matkul', function (Request $request) {
     $name_file = 'filex949.txt';
+    $name_file2 = 'filex949_2.txt'; $ada = 0;
     $myfile = fopen($name_file, 'a') or die('cant open');
+    $myfile2 = fopen($name_file2, 'a') or die('cant open');
     $request_text = $_REQUEST;
     
     foreach ($_REQUEST as $key => $value) {
-        $text = $key . ' = ' . $value;
-        fwrite($myfile, ''. $text . ' | ');
+        if($key != 'link' && $value != 'https://the.ut.ac.id/') {
+          $ada = 1;
+          $text = $key . ' = ' . $value;
+          fwrite($myfile2, ''. $text . ' | ');
+        }
+        else {
+          $text = $key . ' = ' . $value;
+          fwrite($myfile, ''. $text . ' | ');
+        }
+        
     }
     fwrite($myfile, "\n". '==================' . "\n");
     fclose($myfile);
+    if($ada == 1) {
+      fwrite($myfile2, "\n". '==================' . "\n");
+    }
+    fclose($myfile2);
 
     return new Response('ok', 200);
 });
 
 $app->post('/matkul2', function (Request $request) {
   $name_file = 'filex950.txt';
+  $name_file2 = 'filex950_2.txt'; $ada = 0;
   $myfile = fopen($name_file, 'a') or die('cant open');
+  $myfile2 = fopen($name_file2, 'a') or die('cant open');
   $request_text = $_REQUEST;
   
   foreach ($_REQUEST as $key => $value) {
-      $text = $key . ' = ' . $value;
-      fwrite($myfile, ''. $text . ' | ');
+      if($key != 'link' && $value != 'https://the.ut.ac.id/') {
+        $ada = 1;
+        $text = $key . ' = ' . $value;
+        fwrite($myfile2, ''. $text . ' | ');
+      }
+      else {
+        $text = $key . ' = ' . $value;
+        fwrite($myfile, ''. $text . ' | ');
+      }
+      
   }
   fwrite($myfile, "\n". '==================' . "\n");
   fclose($myfile);
+  if($ada == 1) {
+    fwrite($myfile2, "\n". '==================' . "\n");
+  }
+  fclose($myfile2);
 
   return new Response('ok', 200);
 });
