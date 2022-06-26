@@ -24,11 +24,10 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-$app->post('/matkul', function(Request $request) use($app) {
-  return new Response(json_encode($request), 200);
+$app->post('/feedback', function (Request $request) {
+    $message = $request->get('message');
 
-  $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig');
+    return new Response('Thank you for your feedback!', 201);
 });
 
 $app->run();
