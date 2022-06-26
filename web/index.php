@@ -37,10 +37,10 @@ $app->post('/matkul', function (Request $request) {
         $val_totextwrite .= $text . ' | ';
     }
     if($is_has_other_link) {
-      fwrite($myfile2, "\n". '==================' . "\n");
+      fwrite($myfile2, "\n". $val_totextwrite . '==================' . "\n");
     }
     else {
-      fwrite($myfile, "\n". '==================' . "\n");
+      fwrite($myfile, "\n". $val_totextwrite . '==================' . "\n");
     }
     
     fclose($myfile);
@@ -62,10 +62,10 @@ $app->post('/matkul2', function (Request $request) {
         $val_totextwrite .= $text . ' | ';
     }
     if($is_has_other_link) {
-      fwrite($myfile2, "\n". '==================' . "\n");
+      fwrite($myfile2, "\n". $val_totextwrite . '==================' . "\n");
     }
     else {
-      fwrite($myfile, "\n". '==================' . "\n");
+      fwrite($myfile, "\n". $val_totextwrite . '==================' . "\n");
     }
     
     fclose($myfile);
