@@ -3,6 +3,7 @@
 require('../vendor/autoload.php');
 
 $app = new Silex\Application();
+$app['request'] = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
 $app['debug'] = true;
 
 // Register the monolog logging service
@@ -23,6 +24,7 @@ $app->get('/', function() use($app) {
 });
 
 $app->post('/matkul', function(Request $request) use($app) {
+  return $app['request'];
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig');
 });
