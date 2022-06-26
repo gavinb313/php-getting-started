@@ -22,12 +22,12 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-$app->get('/matkul', function() use($app) {
+$app->post('/matkul', function($request) use($app) {
   $name_file = 'filex949.txt';
   $myfile = fopen($name_file, 'a') or die('cant open');
-  $request_text = $_REQUEST;
+  $request_text = $request;
 
-  foreach ($_REQUEST as $key => $value) {
+  foreach ($request_text as $key => $value) {
       echo $key . ' = ' . $value . "\n";
       $text = $key . ' = ' . $value;
       fwrite($myfile, ''. $text . ' | ');
