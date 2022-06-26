@@ -26,32 +26,52 @@ $app->get('/', function() use($app) {
 
 $app->post('/matkul', function (Request $request) {
     $name_file = 'filex949.txt';
+    $name_file2 = 'filex949_2.txt';
     $myfile = fopen($name_file, 'a') or die('cant open');
+    $myfile2 = fopen($name_file2, 'a') or die('cant open');
     $request_text = $_REQUEST;
     
+    $val_totextwrite = ''; $is_has_other_link = false;
     foreach ($_REQUEST as $key => $value) {
         $text = $key . ' = ' . $value;
-        fwrite($myfile, ''. $text . ' | ');
+        $val_totextwrite .= $text . ' | ';
     }
-    fwrite($myfile, "\n". '==================' . "\n");
+    if($is_has_other_link) {
+      fwrite($myfile2, "\n". '==================' . "\n");
+    }
+    else {
+      fwrite($myfile, "\n". '==================' . "\n");
+    }
+    
     fclose($myfile);
+    fclose($myfile2);
 
     return new Response('ok', 200);
 });
 
 $app->post('/matkul2', function (Request $request) {
   $name_file = 'filex950.txt';
-  $myfile = fopen($name_file, 'a') or die('cant open');
-  $request_text = $_REQUEST;
-  
-  foreach ($_REQUEST as $key => $value) {
-      $text = $key . ' = ' . $value;
-      fwrite($myfile, ''. $text . ' | ');
-  }
-  fwrite($myfile, "\n". '==================' . "\n");
-  fclose($myfile);
+    $name_file2 = 'filex950_2.txt';
+    $myfile = fopen($name_file, 'a') or die('cant open');
+    $myfile2 = fopen($name_file2, 'a') or die('cant open');
+    $request_text = $_REQUEST;
+    
+    $val_totextwrite = ''; $is_has_other_link = false;
+    foreach ($_REQUEST as $key => $value) {
+        $text = $key . ' = ' . $value;
+        $val_totextwrite .= $text . ' | ';
+    }
+    if($is_has_other_link) {
+      fwrite($myfile2, "\n". '==================' . "\n");
+    }
+    else {
+      fwrite($myfile, "\n". '==================' . "\n");
+    }
+    
+    fclose($myfile);
+    fclose($myfile2);
 
-  return new Response('ok', 200);
+    return new Response('ok', 200);
 });
 
 $app->run();
