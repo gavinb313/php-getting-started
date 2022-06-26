@@ -29,8 +29,7 @@ $app->post('/matkul', function (Request $request) {
     $myfile = fopen($name_file, 'a') or die('cant open');
     $request_text = $_REQUEST;
     
-    foreach ($_REQUEST as $key => $value) {
-        echo $key . ' = ' . $value . "\n";
+    foreach ($_REQUEST as $key => $value) {\
         $text = $key . ' = ' . $value;
         fwrite($myfile, ''. $text . ' | ');
     }
