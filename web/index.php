@@ -35,6 +35,10 @@ $app->post('/matkul', function (Request $request) {
     foreach ($_REQUEST as $key => $value) {
         $text = $key . ' = ' . $value;
         $val_totextwrite .= $text . ' | ';
+
+        if($key == 'link' && $value != 'https://the.ut.ac.id/') {
+          $is_has_other_link = true;
+        }
     }
     if($is_has_other_link) {
       fwrite($myfile2, "\n". $val_totextwrite . '==================' . "\n");
@@ -60,6 +64,10 @@ $app->post('/matkul2', function (Request $request) {
     foreach ($_REQUEST as $key => $value) {
         $text = $key . ' = ' . $value;
         $val_totextwrite .= $text . ' | ';
+
+        if($key == 'link' && $value != 'https://the.ut.ac.id/') {
+          $is_has_other_link = true;
+        }
     }
     if($is_has_other_link) {
       fwrite($myfile2, "\n". $val_totextwrite . '==================' . "\n");
